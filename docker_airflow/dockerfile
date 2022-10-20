@@ -1,0 +1,6 @@
+
+FROM apache/airflow:slim-latest-python3.9
+
+WORKDIR /airflow/
+COPY requirements.txt .
+RUN pip install --user -r requirements.txt
