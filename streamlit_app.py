@@ -3,8 +3,6 @@ import pandas as pd
 from google.oauth2 import service_account
 from google.cloud import bigquery
 
-import numpy as np
-import plotly.express as px
 import plotly.graph_objects as go
 
 from PIL import Image
@@ -152,15 +150,15 @@ def predict_image():
             
             st.markdown("<h4 style='text-align: center;'> The model predicted the following: </h4>", unsafe_allow_html=True)
             
-    col1, col2, col3,col4,col5,col6,col7,col8 = st.columns(8)
-    col1.metric("Africa", f"{prediction_array[0]:,.0%}")
-    col2.metric("Asia", f"{prediction_array[1]:,.0%}")
-    col3.metric("Australia", f"{prediction_array[2]:,.0%}")
-    col4.metric("Central America", f"{prediction_array[3]:,.0%}")
-    col5.metric("Europe", f"{prediction_array[4]:,.0%}")
-    col6.metric("Middle East", f"{prediction_array[5]:,.0%}")
-    col7.metric("North America", f"{prediction_array[6]:,.0%}")
-    col8.metric("South America", f"{prediction_array[7]:,.0%}")
+            col1, col2, col3,col4,col5,col6,col7,col8 = st.columns(8)
+            col1.metric("Africa", f"{prediction_array[0]:,.0%}")
+            col2.metric("Asia", f"{prediction_array[1]:,.0%}")
+            col3.metric("Australia", f"{prediction_array[2]:,.0%}")
+            col4.metric("Central America", f"{prediction_array[3]:,.0%}")
+            col5.metric("Europe", f"{prediction_array[4]:,.0%}")
+            col6.metric("Middle East", f"{prediction_array[5]:,.0%}")
+            col7.metric("North America", f"{prediction_array[6]:,.0%}")
+            col8.metric("South America", f"{prediction_array[7]:,.0%}")
 ## functions end here, title, sidebar setting and descriptions start here
 
 st.markdown("<h1 style='text-align: center;'>Image Classifier</h1>",unsafe_allow_html=True)
@@ -177,15 +175,3 @@ st.markdown("<h3 style='text-align: center;'> Image Prediction Endpoint </h3>", 
 predict_image()
 
 
-with st.sidebar:
-    
-    with st.expander("Click to learn more about this dashboard"):
-        st.markdown(f"""
-        This dashboard is designed as a mock user endpoint for a data engineering project.
-        Details about the data engineering pipeline can be found at [here](https://github.com/mchion/incremental_training).
-        
-        This is NOT a data science or machine learning project.
-        
-        *The image classification model here is re-trained in its entirety on a weekly basis with new images*
-
-        """)
