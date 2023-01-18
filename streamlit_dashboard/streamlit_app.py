@@ -13,7 +13,7 @@ import torch.nn.functional as nnf
 from torchvision.transforms import Compose, ToTensor, Resize
 
 st.set_page_config(
-    page_title='Archdaily.com Image Classifier',
+    page_title='ML Image Classification with Incremental Training',
     layout='wide'
 )
 
@@ -116,6 +116,12 @@ def dataset_classes():
         st.plotly_chart(fig2, use_container_width=True)
         st.markdown(f"""<div style='text-align: center;'><strong style="font-size:24px;">{total_images2:,.0f}</strong>   total images</div>""", unsafe_allow_html=True)
 
+    st.write('')
+    st.markdown(f"""Our initial training/test set contained {total_images1:,} total images and used to train a pretrained convolutional neural network (ResNet-50). 
+                Since our initial training, {total_images2 - total_images1:,} images have been scraped and used to
+                incrementally train our neural network on a weekly basis.""", unsafe_allow_html=True)
+    
+    
 def get_prediction(file):
     
     # import pre- trained model 
@@ -162,10 +168,12 @@ def predict_image():
         col8.metric("South America", f"{prediction_array[7]:,.0%}")
 ## functions end here, title, sidebar setting and descriptions start here
 
-st.markdown("<h1 style='text-align: center;'>Image Classifier</h1>",unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>ML Image Classification with Incremental Training</h1>",unsafe_allow_html=True)
 st.write("")
-st.markdown("""A post on Reddit can contain zero or more comments. We can view comments as a stream of data over time (a time series).
-            The plot below shows the total number of comments per hour for the entire **r/dataengineering** subreddit (a subreddit is a collection of posts).""")
+st.markdown("""Architectural images are webscraped from <a href = 'https://www.archdaily.com'> <font color='#4699ED'>archdaily.com</font></a>
+            and assigned categorical region labels based on the image's country of origin (determined by archdaily). 
+            For this project, images are classified into one of eight regions of the world.""", unsafe_allow_html=True)
+
 
 dataset_classes()
 
@@ -173,6 +181,19 @@ st.write('')
 st.write('')
 st.markdown("<h3 style='text-align: center;'> Image Prediction Endpoint </h3>", unsafe_allow_html=True)
 
+st.markdown("""Upload an architectural image here to see which region our model classifies it as.""", unsafe_allow_html=True)
+
 predict_image()
 
+with st.sidebar:
 
+    st.markdown(f"""
+    This dashboard is designed as a mock user endpoint for a data engineering project.
+    Github repository can be found at [here](https://github.com/mchion/incremental_training).
+
+    This project is primarily data engineering focused, but future improvements will focus more on the ML and MLOps aspect of this project. 
+
+    *All data on this dashboard is active and constantly changing based on new incoming data. 
+    New images from archdaily.com are scraped every 6 hours.*
+
+    """)
