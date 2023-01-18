@@ -189,7 +189,7 @@ with st.sidebar:
 
     st.markdown(f"""
     This dashboard is designed as a mock user endpoint for a data engineering project.
-    Data pipeline details can be found in the [Github](https://github.com/mchion/incremental_training) repository.
+    Data pipeline details can be found in the [Github](https://github.com/mchion/ML_continual_learning_pipeline) repository.
 
     This project is primarily data engineering focused, but future improvements will focus more on ML and MLOps.  
 
