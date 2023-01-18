@@ -4,7 +4,7 @@ Pipeline that incrementally updates a neural network using PyTorch, Airflow and 
 ![Pipeline Diagram](/images/archdaily_diagram.svg)
 
 Architectural images are webscraped from [**archdaily.com**](archdaily.com) and assigned categorical region labels based on the image's country of origin (determined by archdaily). For this project, images are classified into one of eight regions of the world.
-[**Click here to view the dashboard endpoint**](https://mchion-ml-continual-learning-pipe-dashboardstreamlit-app-yjuna8.streamlit.app/)
+[**Click here to view the dashboard endpoint**](https://mchion-ml-continual-learning-pipe-dashboardstreamlit-app-yjuna8.streamlit.app/).
 
 
 ## Data Extraction
@@ -33,7 +33,7 @@ Architectural images are webscraped from [**archdaily.com**](archdaily.com) and 
 
 An dashboard endpoint was made so that users that can users can upload their own architectural images and see the results for the 
 
-![Dashboard General](/images/dashboard1.png)
+![Dashboard General](/images/dashboard.png)
 
 ## Unit Testing
 
