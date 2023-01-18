@@ -117,8 +117,8 @@ def dataset_classes():
         st.markdown(f"""<div style='text-align: center;'><strong style="font-size:24px;">{total_images2:,.0f}</strong>   total images</div>""", unsafe_allow_html=True)
 
     st.write('')
-    st.markdown(f"""Our initial training/test set contained {total_images1:,} total images and used to train a pretrained convolutional neural network (ResNet-50). 
-                Since our initial training, {total_images2 - total_images1:,} images have been scraped and used to
+    st.markdown(f"""Our initial training/test set contained {total_images1:,} total images, and these initial images were used to train a pretrained convolutional neural network (ResNet-50). 
+                Since then, {total_images2 - total_images1:,} images have been scraped and used to
                 incrementally train our neural network on a weekly basis.""", unsafe_allow_html=True)
     
     
@@ -181,7 +181,7 @@ st.write('')
 st.write('')
 st.markdown("<h3 style='text-align: center;'> Image Prediction Endpoint </h3>", unsafe_allow_html=True)
 
-st.markdown("""Upload an architectural image here to see which region our model classifies it as.""", unsafe_allow_html=True)
+st.markdown("""Upload an architectural image here to see model predictions for what region it belongs to.""", unsafe_allow_html=True)
 
 predict_image()
 
@@ -189,9 +189,9 @@ with st.sidebar:
 
     st.markdown(f"""
     This dashboard is designed as a mock user endpoint for a data engineering project.
-    Github repository can be found at [here](https://github.com/mchion/incremental_training).
+    Data pipeline details can be found in the [Github Repository](https://github.com/mchion/incremental_training).
 
-    This project is primarily data engineering focused, but future improvements will focus more on the ML and MLOps aspect of this project. 
+    This project is primarily data engineering focused, but future improvements will focus more on ML and MLOps.  
 
     *All data on this dashboard is active and constantly changing based on new incoming data. 
     New images from archdaily.com are scraped every 6 hours.*
