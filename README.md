@@ -1,4 +1,4 @@
-# ML Image Classification Model with Continual Learning Pipeline
+# ML Image Classification with a Continual Learning Pipeline
 Pipeline that incrementally updates a neural network using PyTorch, Airflow and MLflow. Docker and Terraform used for reproducability. Streamlit used to create dashboard.
 
 ![Pipeline Diagram](/images/archdaily_diagram.svg)
