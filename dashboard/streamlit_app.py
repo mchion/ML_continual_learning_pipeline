@@ -171,7 +171,7 @@ def predict_image():
 st.markdown("<h1 style='text-align: center;'>ML Image Classification with a Continual Learning Pipeline</h1>",unsafe_allow_html=True)
 st.write("")
 st.markdown("""Architectural images are webscraped from <a href = 'https://www.archdaily.com'> <font color='#4699ED'>archdaily.com</font></a>
-            and assigned a region based on the country that archdaily states it is from. 
+            and assigned a region based on the country that archdaily designates on its website. 
             For this project, images are classified into one of eight regions of the world - Europe, Asia, South America, North America, Australia, Central America, Middle East, and Africa.""", unsafe_allow_html=True)
 
 
