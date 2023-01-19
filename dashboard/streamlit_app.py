@@ -13,7 +13,7 @@ import torch.nn.functional as nnf
 from torchvision.transforms import Compose, ToTensor, Resize
 
 st.set_page_config(
-    page_title='ML Image Classification with Incremental Training',
+    page_title='ML Image Classification with a Continual Learning Pipeline',
     layout='wide'
 )
 
@@ -118,8 +118,8 @@ def dataset_classes():
 
     st.write('')
     st.markdown(f"""Our initial training/test set contained {total_images1:,} total images, and these initial images were used to train a pretrained convolutional neural network (ResNet-50). 
-                Since then, {total_images2 - total_images1:,} images have been scraped and used to
-                incrementally train our neural network on a weekly basis.""", unsafe_allow_html=True)
+                Since the initial training, {total_images2 - total_images1:,} images have been scraped and used to
+                incrementally update the neural network on a weekly basis and with stateless retraining.""", unsafe_allow_html=True)
     
     
 def get_prediction(file):
@@ -171,8 +171,8 @@ def predict_image():
 st.markdown("<h1 style='text-align: center;'>ML Image Classification with Incremental Training</h1>",unsafe_allow_html=True)
 st.write("")
 st.markdown("""Architectural images are webscraped from <a href = 'https://www.archdaily.com'> <font color='#4699ED'>archdaily.com</font></a>
-            and assigned categorical region labels based on the image's country of origin (determined by archdaily). 
-            For this project, images are classified into one of eight regions of the world.""", unsafe_allow_html=True)
+            and assigned a region based on the country that archdaily states it is from. 
+            For this project, images are classified into one of eight regions of the world: Europe, Asia, South America, North America, Australia, Central America, Middle East, and Africa.""", unsafe_allow_html=True)
 
 
 dataset_classes()
