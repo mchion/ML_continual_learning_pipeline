@@ -168,11 +168,11 @@ def predict_image():
         col8.metric("South America", f"{prediction_array[7]:,.0%}")
 ## functions end here, title, sidebar setting and descriptions start here
 
-st.markdown("<h1 style='text-align: center;'>ML Image Classification with Incremental Training</h1>",unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>ML Image Classification with a Continual Learning Pipeline</h1>",unsafe_allow_html=True)
 st.write("")
 st.markdown("""Architectural images are webscraped from <a href = 'https://www.archdaily.com'> <font color='#4699ED'>archdaily.com</font></a>
             and assigned a region based on the country that archdaily states it is from. 
-            For this project, images are classified into one of eight regions of the world: Europe, Asia, South America, North America, Australia, Central America, Middle East, and Africa.""", unsafe_allow_html=True)
+            For this project, images are classified into one of eight regions of the world - Europe, Asia, South America, North America, Australia, Central America, Middle East, and Africa.""", unsafe_allow_html=True)
 
 
 dataset_classes()
