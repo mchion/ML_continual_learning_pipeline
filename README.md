@@ -57,13 +57,6 @@ A dashboard endpoint was made so that users that can users can upload their own 
 
 ![Dashboard General](/images/dashboard.png)
 
-## Unit Testing
-
-Although not implemeneted, will need to incorporate some unit testing with a framework PyTest in future deployments. 
-
-## Monitoring and Observability
-
-Because our app is entirely run on a cloud platorm, monitoring and observability are especially important since we cannot be expected to log in and monitor manually.
 
 ## Futher Directions and Considerations
 
