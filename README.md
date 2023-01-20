@@ -4,18 +4,41 @@ Pipeline that incrementally updates a neural network using PyTorch, Airflow and 
 ![Pipeline Diagram](/images/archdaily_diagram.svg)
 
 Architectural images are webscraped from [**archdaily.com**](https://archdaily.com) and assigned categorical region labels based on the image's country of origin (determined by archdaily). For this project, images are classified into one of eight regions of the world.
-[**Click here to view the dashboard endpoint**](https://mchion-ml-continual-learning-pipe-dashboardstreamlit-app-yjuna8.streamlit.app/).
+[**Click here to view the dashboard endpoint**](https://mchion-ml-continual-learning-pipe-dashboardstreamlit-app-yjuna8.streamlit.app/)
 
 
-## Data Extraction
+## Data Extraction (Creation of Streaming Data Source)
+Images webscraped from archdaily.com are immediately published to Google Pub/Sub. In order to avoid duplicate images being published, the app checks when the last images were imported. 
 
-- **Webscraping images**: In general, webscraping images takes a lot of guesswork. Pages from previous years may have changed formatting. For the most part, the html structure was the same. 
-- **Types of images**: There were 3 types of architectural images 
+
+- **Webscraping images**: In general, webscraping images takes a lot of trial and error to figure out what particular HTML code will deliver the right images. For instance, pages from previous years may have changed formatting.
+- **Types of images**: In general, architectural images can be broken down into 3 categories for our purposes - 1) Outdoor 2) Indoor and 3) Plans. 
 - **Imbalanced classes**: During the course of webscraping, the images being scraped were 
+
+
 
 ## Data Loading
 
-- **Google PubSub**: In order to pull messages more effectively and use lower latency, google pub/sub was implemented to take in images and their corresposnding text. 
+
+- **Google BigQuery**: Metadata and file names for each image are stored in BigQuery. The database schema is as follows: \
+\
+  | Column Name | Value | 
+  | ------------ | --------- | 
+  | post_id | ID of posting containing image |
+  | post_date | date of posting containing image |
+  | date_added | date/time webscraped |
+  | primary_link | link to posting containing image |
+  | country| country of image |
+  | continent | continent of image |
+  | image_1| image 1 name |
+  | image_2 | image 2 name |
+  | image_3 | image 3 name |
+  
+  
+
+- **Google Pub/Sub**: In order to simulate consuming images from a streaming data source, we consumed images on our local servers from Google Pub/Sub. Attached to each image is a message containing the post ID, post timestamp, and image number.\
+\
+One note is that Google Pub/Sub is not particularly made for image sending, and if our image sizes were larger, we would have to use a more robust message queue like Kafka or RabbitMQ. 
 
 
 ## Data Transformation
@@ -38,6 +61,8 @@ An dashboard endpoint was made so that users that can users can upload their own
 ## Unit Testing
 
 Although not implemeneted, will need to incorporate some unit testing involving PyTest. 
+
+## Monitoring and Observability
 
 ## Futher Directions and Considerations
 
