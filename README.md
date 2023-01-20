@@ -20,7 +20,7 @@ Images webscraped from archdaily.com are immediately published to Google Pub/Sub
 ## Data Loading
 
 
-- **Google BigQuery**: Metadata and file names for each image are stored in BigQuery. The database schema is as follows:\
+- **Google BigQuery**: Metadata and file names for each image are stored in BigQuery. The database schema is as follows:
 
   | Column Name | Value | 
   | ------------ | --------- | 
