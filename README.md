@@ -42,7 +42,7 @@ Images webscraped from archdaily.com are immediately published to Google Pub/Sub
 One note is that Google Pub/Sub is not particularly made for image sending, and if our image sizes were larger, we would have to use a more robust message queue like Kafka or RabbitMQ. And even though images were allowed to be sent unserialized to Google Pub/Sub, serialization - using something like Python Pickle - would have been needed if images were larger or sent through another service. 
 
 
-## Data Transformation
+## Data Preprocessing
 Once images were loaded and saved locally, we resized them to a 256 x 256 format and normalized as a tensor image. But in order to resize the images, we had to first find the mean and standard deviation of the image set. 
 
 ```shell
