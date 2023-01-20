@@ -43,7 +43,7 @@ One note is that Google Pub/Sub is not particularly made for image sending, and 
 
 
 ## Data Transformation
-Once images were loaded and saved locally, they were resized to a 256x256 format and normalized as a tensor image. But in order to resize the images, we had to find the mean and standard deviation of the image set first. 
+Once images were loaded and saved locally, we resized them to a 256 x 256 format and normalized as a tensor image. But in order to resize the images, we had to first find the mean and standard deviation of the image set. 
 
 ```shell
 def batch_mean_and_sd(loader):
@@ -65,7 +65,7 @@ def batch_mean_and_sd(loader):
     return mean,std
 ```
 
-Once we found the mean and standard deviation of the set, we used these numbers to perform the necessary PyTorch transforms. As we can see below, the means for the image set were calculated to be `(0.5182, 0.5144, 0.4948)` and the standard deviations were calculate to be `(0.2526, 0.2517, 0.2865)`. 
+Once we found the mean and standard deviation of the set, we used these numbers to perform the necessary PyTorch transforms. As we can see below, the means for the image set were calculated to be `(0.5182, 0.5144, 0.4948)` and the standard deviations were calculated to be `(0.2526, 0.2517, 0.2865)`. 
 
 ```shell
 transform = transforms.Compose([transforms.Resize((256,256)), 
