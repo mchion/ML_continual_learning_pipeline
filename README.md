@@ -12,16 +12,16 @@ Images webscraped from archdaily.com are immediately published to Google Pub/Sub
 
 
 - **Webscraping images**: In general, webscraping images takes a lot of trial and error to figure out what particular HTML code will deliver the right images. For instance, pages from previous years may have changed formatting.
-- **Types of images**: In general, architectural images can be broken down into 3 categories for our purposes - 1) Outdoor 2) Indoor and 3) Plans. 
-- **Imbalanced classes**: During the course of webscraping, the images being scraped were 
+- **Types of images**: In general, architectural images can be broken down into 3 categories for our purposes - outdoor, indoor, and plans. This was a bottleneck since images of indoors and plans tend to not be as distinctive as outdoor images of architecture. There was some manual removal of images  
+- **Imbalanced classes**: During the course of webscraping, the images being scraped were found to be imbalanced. 
 
 
 
 ## Data Loading
 
 
-- **Google BigQuery**: Metadata and file names for each image are stored in BigQuery. The database schema is as follows: \
-\
+- **Google BigQuery**: Metadata and file names for each image are stored in BigQuery. The database schema is as follows:\
+
   | Column Name | Value | 
   | ------------ | --------- | 
   | post_id | ID of posting containing image |
@@ -34,7 +34,6 @@ Images webscraped from archdaily.com are immediately published to Google Pub/Sub
   | image_2 | image 2 name |
   | image_3 | image 3 name |
   
-  
 
 - **Google Pub/Sub**: In order to simulate consuming images from a streaming data source, we consumed images on our local servers from Google Pub/Sub. Attached to each image is a message containing the post ID, post timestamp, and image number.\
 \
@@ -46,24 +45,26 @@ One note is that Google Pub/Sub is not particularly made for image sending, and 
 
 
 ## Data Modeling
-- **ResNet50 Model**: We used the ResNet50 pretrained model for faster modeling. ResNet50 was a good balance between performance and accuracy. 
+- **ResNet50 Model**: We used the ResNet50 pretrained model for faster modeling. ResNet50 was chosen for a balance between performance and accuracy. 
 
 ## Data Automation
-- **Airflow**: In order to maintain the constant updating of 
+- **Airflow**: In order to automate the updates, airflow was used to cooridinate the consuming of images from Google Pub/Sub and updating the model.
 - **MLFlow**: To keep track of various versions of models, used MLFlow to help simplify the choosing process once new samples are processed.  
 
 ## Data Visualization
 
-An dashboard endpoint was made so that users that can users can upload their own architectural images and see the results for the 
+A dashboard endpoint was made so that users that can users can upload their own architectural images and see what region the ML model predicts their image is from. This was pretty straightforward due to the ease of using [**Streamlit**](https://streamlit.io/). 
 
 ![Dashboard General](/images/dashboard.png)
 
 ## Unit Testing
 
-Although not implemeneted, will need to incorporate some unit testing involving PyTest. 
+Although not implemeneted, will need to incorporate some unit testing with a framework PyTest in future deployments. 
 
 ## Monitoring and Observability
 
+Because our app is entirely run on a cloud platorm, monitoring and observability are especially important since we cannot be expected to log in and monitor manually.
+
 ## Futher Directions and Considerations
 
-- **New Categorical Training**: I think the classification of images to continents was a naive attempt at classification. Perhaps a better one would be to see the type of architecture the 
+- **New Categories**: I think the classification of images to continents was a naive attempt at classification. Perhaps a better one would be to see the type of architecture the image represents - residential, commercial, entertainment, etc. **CURRENT EFFORTS ARE UNDERWAY TO CHANGE THIS**
